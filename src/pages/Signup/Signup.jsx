@@ -4,6 +4,7 @@ import { useForm } from "react-hook-form"
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { setUsers } from '../../utilities/manageUsers';
 
 const Signup = () => {
     const {createUser, updateUserInfo} = useContext(AuthContext)
@@ -25,7 +26,8 @@ const Signup = () => {
                 showConfirmButton: false,
                 timer: 1500
               })
-            navigate('/dashboard');
+              setUsers(data.email)
+            navigate('/home/dashboard');
         })
         .catch(error => console.log(error))
     };

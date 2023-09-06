@@ -11,11 +11,11 @@ const Login = () => {
         const form = event.target;
         const email = form.email.value;
         const password = form.password.value;
-        console.log(email, password);
+        // console.log(email, password);
         login(email, password)
         .then(result => {
             const loggedUser = result.user;
-            console.log(loggedUser);
+            // console.log(loggedUser);
             Swal.fire({
                 title: 'You have logged in.',
                 showClass: {
@@ -25,7 +25,7 @@ const Login = () => {
                   popup: 'animate__animated animate__fadeOutUp'
                 }
               })
-              navigate('/dashboard');
+              navigate('/home/dashboard');
         })
         .catch(error => console.log(error))
     }
