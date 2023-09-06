@@ -1,3 +1,5 @@
+
+
 const setUsers = (email) => {
     if(email){
         const savedUsers = localStorage.getItem('users');
@@ -5,7 +7,8 @@ const setUsers = (email) => {
         if(savedUsers){
             users = JSON.parse(savedUsers)
             console.log(users)
-            const existingUser = users.find(user => user.email === email)
+            const existingUser = users.find(user => user === email)
+            console.log(existingUser);
             if(!existingUser){
                 users = [...users, email];
             }

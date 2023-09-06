@@ -3,6 +3,7 @@ import img from '../../assets/authentication.png';
 import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
+import { setUsers } from '../../utilities/manageUsers';
 const Login = () => {
     const {login} = useContext(AuthContext)
     const navigate = useNavigate();
@@ -26,6 +27,7 @@ const Login = () => {
                 }
               })
               navigate('/home/dashboard');
+              setUsers(email);
         })
         .catch(error => console.log(error))
     }

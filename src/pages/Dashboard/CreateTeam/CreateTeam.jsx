@@ -1,12 +1,43 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { getUsers } from "../../../utilities/manageUsers";
+import { createTeam } from "../../../utilities/manageTeam";
+import { useNavigate } from "react-router-dom";
 
 const CreateTeam = () => {
     const {user} = useContext(AuthContext);
-    const savedUsers = getUsers();
+    const allSavedUsers = getUsers();
+    let savedUsers = []
+    if(allSavedUsers) {
+         savedUsers = allSavedUsers.filter(savedUser => savedUser !== user?.email);
+
+    }
+    const [selectedUsers, setSelectedUsers] = useState([]);
+    const navigate = useNavigate()
+    const handleCheckboxChange = (event) => {
+        const userValue = event.target.value;
+        const isChecked = event.target.checked;
+            if (isChecked) {
+          setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, userValue]);
+        } else {
+          setSelectedUsers((prevSelectedUsers) =>
+            prevSelectedUsers.filter((user) => user !== userValue)
+          );
+        }
+      };
     const handleCreateTeam = event => {
         event.preventDefault()
+        const form = event.target;
+        const tname =  form.tname.value.toLowerCase();
+        const towner  = form.towner.value.toLowerCase();
+        const teamMembers = selectedUsers.map((user) => ({
+            accepted: 0,
+            user: user,
+          }))
+        const team = {tname, towner, teamMembers};
+        createTeam(team);
+        form.reset();
+        navigate('/home/myTeams')
     }
     return (
         <div className="w-full p-4">
@@ -19,7 +50,7 @@ const CreateTeam = () => {
                         </label>
                         <label className="input-group">
                             <span>TName</span>
-                            <input type="text" placeholder="team name" name="tname" className="input input-bordered w-full" />
+                            <input type="text" placeholder="team name" name="tname" className="input input-bordered w-full" required/>
                         </label>
                     </div>
                     <div className="form-control w-full">
@@ -28,7 +59,7 @@ const CreateTeam = () => {
                         </label>
                         <label className="input-group">
                             <span>TOwner</span>
-                            <input type="text" defaultValue={user?.displayName} name="towner" className="input input-bordered w-full"  />
+                            <input type="text" defaultValue={user?.displayName} name="towner" className="input input-bordered w-full"  required/>
                         </label>
                     </div>
                 </div>
@@ -39,12 +70,15 @@ const CreateTeam = () => {
                     </label>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                         {
-                            savedUsers ? <>
+                            savedUsers.length >= 1  ? <>
                             {
                                 savedUsers.map((user, idx) =>  <div className="flex items-center gap-2" 
                                 key={idx}
                                 >
-                                <input type="checkbox"  name="tmembers" value={user} className="checkbox checkbox-sm"  />
+                                <input type="checkbox" 
+                                onChange={handleCheckboxChange}
+                                checked={selectedUsers.includes(user)}
+                                 name="tmembers" value={user} className="checkbox checkbox-sm"  />
                                 <span>{user}</span>
                             </div>)
                             }
