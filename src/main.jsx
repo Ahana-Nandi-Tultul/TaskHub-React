@@ -8,6 +8,8 @@ import {
 import Main from './layouts/Main.jsx';
 import Login from './pages/Login/Login';
 import Signup from './pages/Signup/SIgnup';
+import AuthProvider from './providers/AuthProvider';
+import DashBoard from './pages/Dashboard/Dashboard/DashBoard';
 
 
 const router = createBrowserRouter([
@@ -22,6 +24,10 @@ const router = createBrowserRouter([
       {
         path: 'signup',
         element: <Signup></Signup>
+      },
+      {
+        path: 'dashboard',
+        element: <DashBoard></DashBoard>
       }
     ]
   }
@@ -29,6 +35,8 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <AuthProvider>
     <RouterProvider router={router}></RouterProvider>
-  </React.StrictMode>,
+    </AuthProvider>
+  </React.StrictMode>
 )
