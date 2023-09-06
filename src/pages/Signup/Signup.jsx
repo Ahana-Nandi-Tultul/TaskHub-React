@@ -25,7 +25,6 @@ const Signup = () => {
                 showConfirmButton: false,
                 timer: 1500
               })
-            // console.log(loggedUser);
             navigate('/dashboard');
         })
         .catch(error => console.log(error))
