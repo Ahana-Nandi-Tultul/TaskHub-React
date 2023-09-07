@@ -1,22 +1,27 @@
 import { useContext, useState } from "react";
-import { AuthContext } from "../../../providers/AuthProvider";
 import { getUsers } from "../../../utilities/manageUsers";
-import { createTeam } from "../../../utilities/manageTeam";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
+import { AuthContext } from "../../../providers/AuthProvider";
+import { getOneTeam, updateTeam } from "../../../utilities/manageTeam";
 
-const CreateTeam = () => {
+const UpdateTeam = () => {
     const {user} = useContext(AuthContext);
     const allSavedUsers = getUsers();
+    const tname = useParams();
+    const team = getOneTeam(tname.tname);
+
     let savedUsers = []
     if(allSavedUsers) {
          savedUsers = allSavedUsers.filter(savedUser => savedUser !== user?.email);
 
     }
-    const [selectedUsers, setSelectedUsers] = useState([]);
+    const teamMembers =  team?.teamMembers.map((member) => member.user) || []
+    const [selectedUsers, setSelectedUsers] = useState(teamMembers);
     const navigate = useNavigate()
     const handleCheckboxChange = (event) => {
         const userValue = event.target.value;
         const isChecked = event.target.checked;
+        // console.log(selectedUsers, isChecked)
             if (isChecked) {
           setSelectedUsers((prevSelectedUsers) => [...prevSelectedUsers, userValue]);
         } else {
@@ -25,25 +30,25 @@ const CreateTeam = () => {
           );
         }
       };
-    const handleCreateTeam = event => {
+    const handleUpdateTeam = event => {
         event.preventDefault()
         const form = event.target;
         const tname =  form.tname.value.toLowerCase();
         const towner  = form.towner.value;
-        console.log(towner);
+        // console.log(towner);
         const teamMembers = selectedUsers.map((user) => ({
             accepted: 0,
             user: user,
           }))
-        const team = {tname, towner, teamMembers};
-        createTeam(team);
+        const newTeam = {tname, towner, teamMembers};
+        updateTeam(team.tname, newTeam);
         form.reset();
         navigate('/home/myTeams')
     }
     return (
         <div className="w-full p-4">
-            <h2 className="text-3xl text-center font-semibold my-4">Create a Team and Send Invitation</h2>
-            <form onSubmit={handleCreateTeam}>
+            <h2 className="text-3xl text-center font-semibold my-4">Update Team: {team.towner}</h2>
+            <form onSubmit={handleUpdateTeam}>
                 <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4 mb-5">
                     <div className="form-control w-full">
                         <label className="label">
@@ -51,7 +56,7 @@ const CreateTeam = () => {
                         </label>
                         <label className="input-group">
                             <span>TName</span>
-                            <input type="text" placeholder="team name" name="tname" className="input input-bordered w-full" required/>
+                            <input type="text" defaultValue={team.tname} name="tname" className="input input-bordered w-full" required/>
                         </label>
                     </div>
                     <div className="form-control w-full">
@@ -71,29 +76,27 @@ const CreateTeam = () => {
                     </label>
                     <div className="grid grid-cols-1 gap-4 md:grid-cols-3">
                         {
-                            savedUsers.length >= 1  ? <>
-                            {
-                                savedUsers.map((user, idx) =>  <div className="flex items-center gap-2" 
+                           savedUsers.map((user, idx) =>  <div className="flex items-center gap-2" 
                                 key={idx}
                                 >
                                 <input type="checkbox" 
                                 onChange={handleCheckboxChange}
-                                checked={selectedUsers.includes(user)}
-                                 name="tmembers" value={user} className="checkbox checkbox-sm"  />
+                                defaultChecked = { selectedUsers.includes(user) ||
+                                team.teamMembers.some(member =>  member.user === user)
+                                }
+                                 name="tmembers" value={user} className="checkbox checkbox-sm"
+                                 />
                                 <span>{user}</span>
                             </div>)
                             }
-                            </> :
-                            <span>No user to create team</span>
-                        }
                     </div>
                 </div>
                 <div className="form-control my-4 w-full">
-                <input type="submit" value="Create Team" className="btn  btn-primary w-full"/>
+                <input type="submit" value="Update Team" className="btn  btn-primary w-full"/>
                 </div>
             </form>
         </div>
     );
 };
 
-export default CreateTeam;
+export default UpdateTeam;
