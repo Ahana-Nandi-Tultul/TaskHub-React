@@ -1,13 +1,22 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import moment from "moment/moment";
-import { getUsers } from "../../../utilities/manageUsers";
 import { createTask } from "../../../utilities/manageTasks";
+import { getMyTeamsAsMembers, getTeamMembers } from "../../../utilities/manageTeam";
 
 const CreateTask = () => {
     const priorityLevels = ['high', 'medium', 'low', 'critical', 'normal']
     const {user} = useContext(AuthContext);
-    const savedUsers = getUsers();
+    const myTeams = getMyTeamsAsMembers(user?.email);
+    // console.log(myTeams);
+    const [teamMembers, setTeamMembers] = useState([]);
+    const handleTeamMembers = event => {
+
+        event.preventDefault()
+        const savedTeamMembers = getTeamMembers(event.target.value)
+        setTeamMembers(savedTeamMembers);
+        // console.log(teamMembers)
+    }
     const handleCreateTask = event => {
         event.preventDefault();
         const form = event.target;
@@ -15,13 +24,15 @@ const CreateTask = () => {
         const createdBy = form.createdBy.value;
         const date = form.date.value;
         const priority = form.priority.value;
+        const team = form.chooseTeam.value;
         const assignTo = form.assignTo.value;
         const des = form.des.value;
 
         // console.log(title, createdBy, date, priority, assignTo, des);
         const task = {
-            title, createdBy, date, priority, assignTo, des
+            title, createdBy, date, priority, team, assignTo, des
         }
+        console.log(task)
         createTask(task);
 
     }
@@ -80,20 +91,40 @@ const CreateTask = () => {
                     </label>
                 </div>
             </div>
-            <div className="form-control w-full">
-                <label className="label">
-                    <span className="label-text">Assign To</span>
-                </label>
-                <label className="input-group">
-                    <span>Assign</span>
-                    <select className="select select-bordered w-full" name="assignTo" required>
-                        {
-                            savedUsers.map((user, index) => <option
-                            key={index} value={user}
-                            >{user}</option>)
-                        }
-                    </select>
-                </label>
+            <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4 mb-5">
+                <div className="form-control w-full">
+                    <label className="label">
+                        <span className="label-text">Choose Team</span>
+                    </label>
+                    <label className="input-group">
+                        <select className="select select-bordered w-full" name="chooseTeam"
+                           onChange={handleTeamMembers}
+                          required>
+                                {
+                                    myTeams.map((team, index) =>
+                                        <option
+                                        key={index} value={team.tname}
+                                        >{team.tname}</option>)
+                                    
+                                }
+                        </select>
+                    </label>
+                </div>
+                <div className="form-control w-full">
+                    <label className="label">
+                        <span className="label-text">Assign To</span>
+                    </label>
+                    <label className="input-group">
+                        <span>Assign</span>
+                        <select className="select select-bordered w-full" name="assignTo" required>
+                            {
+                                teamMembers.map((user, index) => <option
+                                key={index} value={user.user}
+                                >{user.user}</option>)
+                            }
+                        </select>
+                    </label>
+                </div>
             </div>
             <div className="form-control w-full">
                 <label className="label">

@@ -16,6 +16,7 @@ import MyTeams from './pages/Dashboard/MyTeams/MyTeams';
 import UpdateTeam from './pages/Dashboard/UpdateTeam/UpdateTeam';
 import TeamInvitations from './pages/Dashboard/TeamInvitations/TeamInvitations';
 import CreateTask from './pages/Dashboard/CreateTask/CreateTask';
+import MyTasks from './pages/Dashboard/MyTasks/MyTasks';
 
 
 const router = createBrowserRouter([
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: 'createTask',
         element: <CreateTask></CreateTask>
+      },
+      {
+        path: 'myTasks',
+        element: <MyTasks></MyTasks>
       }
 
     ]

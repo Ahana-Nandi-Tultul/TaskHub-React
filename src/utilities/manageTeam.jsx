@@ -65,11 +65,14 @@ const myTeamsByInvitations = (name) => {
     const teams = JSON.parse(savedTeams);
     
     // console.log(name)
+    let mySavedTeams = []
+    if(teams){
+         mySavedTeams = teams.filter((item) =>
 
-    const mySavedTeams = teams.filter((item) =>
-
-    item.teamMembers.some((member) => member.user === name)
-    )
+        item.teamMembers.some((member) => member.user === name)
+        )
+    }
+   
     // console.log(mySavedTeams)
         return mySavedTeams;
   
@@ -91,6 +94,29 @@ const acceptTeam = (tname, email) => {
 
 }
 
+const getMyTeamsAsMembers = (username) => {
+    const savedTeams = localStorage.getItem('teams');
+    const teams = JSON.parse(savedTeams);
+    let mySavedTeams = []
+    if(teams){     
+    mySavedTeams = teams.filter((item) =>
+    item.teamMembers.some((member) => member.user === username)
+    )
+
+    }
+    return mySavedTeams
+}
+
+const getTeamMembers = teamName => {
+    const savedTeams = localStorage.getItem('teams');
+    const teams = JSON.parse(savedTeams);
+    let thatTeam;
+    if(teams){
+         thatTeam = teams.find(team => team.tname === teamName);
+    }
+    return thatTeam?.teamMembers;
+}
+
 export {
     createTeam,
     getMyTeams,
@@ -98,5 +124,7 @@ export {
     updateTeam,
     deleteTeam,
     myTeamsByInvitations,
-    acceptTeam
+    acceptTeam,
+    getMyTeamsAsMembers,
+    getTeamMembers
 }
