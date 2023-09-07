@@ -1,5 +1,5 @@
 import { useContext, useEffect, useState } from "react";
-import { changeStatusToCompleted, filterTaskByDate, filterTaskByStatus, getMyTasks } from "../../../utilities/manageTasks";
+import { changeStatusToCompleted, filterTaskByDate, filterTaskByStatus, getMyTasks, sortTasksByDate } from "../../../utilities/manageTasks";
 import { AuthContext } from "../../../providers/AuthProvider";
 import moment from "moment";
 import Swal from "sweetalert2";
@@ -52,7 +52,19 @@ const MyTasks = () => {
         const form = event.target;
         const date = form.date.value;
         // console.log(date)
-        setMyTasks(filterTaskByDate(date))
+        if(date){
+
+            setMyTasks(filterTaskByDate(date))
+        }
+        else{
+            const savedTasks = getMyTasks(user?.email)
+            setMyTasks(savedTasks)
+        }
+
+    }
+
+    const handleSortByDate = (sortType) => {
+        setMyTasks(sortTasksByDate(sortType));
     }
 
     return (
@@ -67,6 +79,13 @@ const MyTasks = () => {
                 <li><button onClick={() => handleFilter('completed')}>Completed</button></li>
               </ul>
             </details>
+            <details className="dropdown mb-8">
+              <summary className="m-1 btn">Sort By Date</summary>
+              <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
+                <li><button onClick={() => handleSortByDate('asc')}>Ascending</button></li>
+                <li><button onClick={() => handleSortByDate('dsc')}>Descending</button></li>
+              </ul>
+            </details>
 
             <form onSubmit={handleFilterByDate}>
                 <div className="input-group">
@@ -74,6 +93,7 @@ const MyTasks = () => {
                     <input className="btn" type="submit" value="Go" />
                 </div>
             </form>
+
             </div>
             <div className="overflow-x-auto">
                 <table className="table">

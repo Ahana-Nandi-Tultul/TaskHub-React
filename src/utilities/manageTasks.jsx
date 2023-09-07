@@ -113,6 +113,23 @@ const filterTaskByDate = (date) => {
     return specificTasks;
 }
 
+const sortTasksByDate = (sortType) => {
+    const savedTasks = localStorage.getItem('tasks')
+    let sorted = []
+    if(savedTasks){
+        const tasks = JSON.parse(savedTasks);
+        sorted = tasks.sort((a, b) => {
+            if (sortType === 'asc') {
+              return a.date.localeCompare(b.date);
+            } else {
+              return b.date.localeCompare(a.date);
+            }
+    })
+}
+    console.log(sorted);
+    return sorted;
+}
+
 export {
     createTask,
     getMyTasks,
@@ -122,5 +139,6 @@ export {
     updateTask,
     deleteTitle,
     filterTaskByStatus,
-    filterTaskByDate
+    filterTaskByDate,
+    sortTasksByDate
 }
