@@ -111,10 +111,14 @@ const getTeamMembers = teamName => {
     const savedTeams = localStorage.getItem('teams');
     const teams = JSON.parse(savedTeams);
     let thatTeam;
+    let acceptedTeamReq;
     if(teams){
-         thatTeam = teams.find(team => team.tname === teamName);
+        thatTeam = teams.find(team => team.tname === teamName);
+        acceptedTeamReq = thatTeam.teamMembers.filter(member => member.accepted === 1)
+        // console.log(acceptedTeamReq)
     }
-    return thatTeam?.teamMembers;
+
+    return acceptedTeamReq;
 }
 
 export {

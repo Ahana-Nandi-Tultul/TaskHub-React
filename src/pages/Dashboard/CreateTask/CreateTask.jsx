@@ -32,7 +32,7 @@ const CreateTask = () => {
         const task = {
             title, createdBy, date, priority, team, assignTo, des
         }
-        console.log(task)
+        // console.log(task)
         createTask(task);
 
     }

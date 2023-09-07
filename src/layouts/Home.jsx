@@ -3,6 +3,7 @@ import Navbar from "../pages/Shared/Navbar/Navbar";
 import { FaHome, FaTasks } from 'react-icons/fa';
 import { BiTask, BiGroup } from 'react-icons/bi';
 import {MdOutlineGroupAdd } from 'react-icons/md';
+import { Toaster } from 'react-hot-toast';
 const Home = () => {
     return (
         <>
@@ -24,13 +25,15 @@ const Home = () => {
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/myTeams"><BiGroup/> My Teams</NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/teamInvitations"><BiGroup/> Teams & Invitations</NavLink>
                     <div className="divider"></div>
-                    <NavLink className="flex items-center gap-4 text-lg" to="/home/createTask"><BiTask/> Create Task </NavLink>
+                    <NavLink className="flex items-center gap-4 text-lg" to="/home/myCreatedTask"><FaTasks/> My Created Task </NavLink>
+                    <NavLink className="flex items-center gap-4 text-lg" to="/home/createTask"><BiTask/> Create A Task </NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/myTasks"><FaTasks/> My Task </NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/dashboard"><FaHome/> Dashboard</NavLink>
                     </ul>
                 
                 </div>
             </div>
+            <Toaster />
         </>
     );
 };
