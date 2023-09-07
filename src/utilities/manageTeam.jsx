@@ -40,7 +40,7 @@ const getOneTeam = tname => {
 }
 
 const updateTeam = (tname, team) => {
-    console.log(tname);
+    // console.log(tname);
     const savedTeams = localStorage.getItem('teams');
     const teams = JSON.parse(savedTeams);
     
@@ -52,9 +52,18 @@ const updateTeam = (tname, team) => {
     
 }
 
+const deleteTeam = tname => {
+    const savedTeams = localStorage.getItem('teams');
+    const teams = JSON.parse(savedTeams);
+    
+    const remaining = teams.filter(team => team.tname !== tname);
+    localStorage.setItem('teams', JSON.stringify(remaining))
+}
+
 export {
     createTeam,
     getMyTeams,
     getOneTeam,
-    updateTeam
+    updateTeam,
+    deleteTeam
 }
