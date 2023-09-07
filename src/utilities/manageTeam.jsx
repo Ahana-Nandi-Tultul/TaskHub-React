@@ -60,10 +60,43 @@ const deleteTeam = tname => {
     localStorage.setItem('teams', JSON.stringify(remaining))
 }
 
+const myTeamsByInvitations = (name) => {
+    const savedTeams = localStorage.getItem('teams');
+    const teams = JSON.parse(savedTeams);
+    
+    // console.log(name)
+
+    const mySavedTeams = teams.filter((item) =>
+
+    item.teamMembers.some((member) => member.user === name)
+    )
+    // console.log(mySavedTeams)
+        return mySavedTeams;
+  
+}
+
+const acceptTeam = (tname, email) => {
+    const savedTeams = localStorage.getItem('teams');
+    const teams = JSON.parse(savedTeams);
+    
+    let acceptedTeam = teams.find(team => team.tname === tname)
+    acceptedTeam.teamMembers.forEach(user => {
+        if(user.user === email){
+            user.accepted = 1;
+        }
+    })
+    const remaining  = teams.filter(team => team.tname !== tname);
+    const newTeams = [acceptedTeam, ...remaining];
+    localStorage.setItem('teams', JSON.stringify(newTeams))
+
+}
+
 export {
     createTeam,
     getMyTeams,
     getOneTeam,
     updateTeam,
-    deleteTeam
+    deleteTeam,
+    myTeamsByInvitations,
+    acceptTeam
 }

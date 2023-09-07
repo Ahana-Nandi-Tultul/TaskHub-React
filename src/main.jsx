@@ -14,6 +14,7 @@ import DashBoard from './pages/Dashboard/Dashboard/DashBoard';
 import CreateTeam from './pages/Dashboard/CreateTeam/CreateTeam';
 import MyTeams from './pages/Dashboard/MyTeams/MyTeams';
 import UpdateTeam from './pages/Dashboard/UpdateTeam/UpdateTeam';
+import TeamInvitations from './pages/Dashboard/TeamInvitations/TeamInvitations';
 
 
 const router = createBrowserRouter([
@@ -50,7 +51,12 @@ const router = createBrowserRouter([
       {
         path: 'updateTeam/:tname',
         element: <UpdateTeam></UpdateTeam>
+      },
+      {
+        path: 'teamInvitations',
+        element: <TeamInvitations></TeamInvitations>
       }
+
     ]
   }
 ])

@@ -22,6 +22,7 @@ const Home = () => {
                 <div className="divider"></div>
                 <NavLink className="flex items-center gap-4 text-lg" to="/home/createTeam"><MdOutlineGroupAdd/> Create Team</NavLink>
                 <NavLink className="flex items-center gap-4 text-lg" to="/home/myTeams"><BiGroup/> MyTeams</NavLink>
+                <NavLink className="flex items-center gap-4 text-lg" to="/home/teamInvitations"><BiGroup/> Teams & Invitations</NavLink>
                 <div className="divider"></div>
                 <NavLink className="flex items-center gap-4 text-lg" to="/home/dashboard"><BiTask/> Create Task </NavLink>
                 <NavLink className="flex items-center gap-4 text-lg" to="/home/dashboard"><FaHome/> Dashboard</NavLink>
