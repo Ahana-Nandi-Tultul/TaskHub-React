@@ -32,7 +32,15 @@ const Login = () => {
               navigate('/home/dashboard');
               setUsers(email);
         })
-        .catch(error => console.log(error))
+        .catch(error => {
+            console.log(error)
+            Swal.fire({
+                title: 'Error!',
+                text: `${error.message}`,
+                icon: 'error',
+                confirmButtonText: 'Close'
+              })
+        })
     }
     return (
         <>
@@ -58,9 +66,7 @@ const Login = () => {
                             <span className="label-text">Password</span>
                         </label>
                         <input type="password" placeholder="password" name='password' className="input input-bordered" />
-                        <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                        </label>
+                        
                         </div>
                         <div className="form-control mt-6">
                         <input type="submit" value="Login"  className="btn btn-primary" />

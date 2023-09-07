@@ -7,7 +7,6 @@ import {
 } from "react-router-dom";
 import Main from './layouts/Main.jsx';
 import Login from './pages/Login/Login';
-import Signup from './pages/Signup/SIgnup';
 import AuthProvider from './providers/AuthProvider';
 import Home from './layouts/Home';
 import DashBoard from './pages/Dashboard/Dashboard/DashBoard';
@@ -20,6 +19,8 @@ import MyTasks from './pages/Dashboard/MyTasks/MyTasks';
 import MyCreatedTask from './pages/Dashboard/MyCreatedTask/MyCreatedTask';
 import PrivateRoutes from './routes/PrivateRoutes';
 import {  HelmetProvider } from 'react-helmet-async';
+import Profile from './pages/Dashboard/Profile/Profile';
+import Signup from './pages/Signup/Signup';
 
 
 const router = createBrowserRouter([
@@ -72,6 +73,10 @@ const router = createBrowserRouter([
       {
         path: 'myCreatedTask',
         element: <MyCreatedTask></MyCreatedTask>
+      },
+      {
+        path: 'profile',
+        element: <Profile></Profile>
       }
 
     ]

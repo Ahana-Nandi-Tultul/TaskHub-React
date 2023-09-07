@@ -2,6 +2,8 @@ import { useContext } from 'react';
 import logo from '../../../assets/logo.png'
 import { AuthContext } from '../../../providers/AuthProvider';
 import { Link } from 'react-router-dom';
+import { FaUserCircle } from 'react-icons/fa';
+import { Tooltip } from 'react-tooltip';
 const Navbar = () => {
     const {user, logout} = useContext(AuthContext);
     const handleLogout = () => {
@@ -9,9 +11,7 @@ const Navbar = () => {
         .then(() => {})
         .catch(error => console.log(error))
     }
-    // const navbarLink = <>
-        
-    // </>
+   
     return (
         <>
            <div className="navbar bg-base-200 md:px-20 py-4 flex items-center justify-between">
@@ -35,9 +35,22 @@ const Navbar = () => {
                 </div>
                 <div className="navbar-end hidden lg:flex">
                     {
-                        user ? <>
-                        <button className="btn bg-white" onClick={handleLogout}>Logout</button>
-                        </> : 
+                         user ? <>
+                         <div className="avatar mr-4">
+                             <div className="w-10 h-10 rounded-full ring ring-[#f5b48e] ring-offset-2">
+                                 {
+                                     user?.photoURL ? 
+                                     <img src={user?.photoURL} 
+                                     className='me-2 bg-dark text-white' 
+                                     data-tooltip-id="my-tooltip" data-tooltip-content={user?.displayName}/>
+                                     :<FaUserCircle data-tooltip-content={user?.displayName}/>
+                                 }
+                                <Tooltip id="my-tooltip" className='bg-black text-white z-20' />
+                             </div>
+                         </div>
+                         <button className='btn' onClick={handleLogout}>Logout</button>         
+                         </> 
+                          : 
                         <>
                         <Link to="/" className="btn bg-white">Login</Link>
                         </>

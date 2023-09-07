@@ -6,9 +6,9 @@ const setUsers = (email) => {
         let users = []
         if(savedUsers){
             users = JSON.parse(savedUsers)
-            console.log(users)
+            // console.log(users)
             const existingUser = users.find(user => user === email)
-            console.log(existingUser);
+            // console.log(existingUser);
             if(!existingUser){
                 users = [...users, email];
             }
@@ -31,7 +31,37 @@ const getUsers = () => {
     
 }
 
+const setBio = (email, bio) => {
+    const savedBio = localStorage.getItem('bio');
+    let allBio = [];
+    if(savedBio){
+        allBio = JSON.parse(savedBio);
+        allBio = [...allBio , {email, bio}]
+    }
+    else{
+        allBio.push({email, bio})
+    }
+    localStorage.setItem('bio', JSON.stringify(allBio));
+    return;
+}
+
+const getProfile = (email) => {
+    const savedBio = localStorage.getItem('bio');
+    let user;
+    if(savedBio){
+        const allBio = JSON.parse(savedBio);
+        user = allBio.find(user => user.email === email);
+        console.log(user, email, allBio);
+        return user;
+    }
+    else{
+        return {};
+    }
+}
+
 export {
     setUsers,
-    getUsers
+    getUsers,
+    setBio,
+    getProfile
 }
