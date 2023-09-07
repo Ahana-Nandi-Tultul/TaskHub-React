@@ -10,6 +10,7 @@ const createTask = (task) => {
     }
 
     localStorage.setItem('tasks', JSON.stringify(allTasks));
+    return;
 }
 
 const getMyTasks = (userEmail) => {
@@ -26,14 +27,14 @@ const getMyTasks = (userEmail) => {
     }
 }
 
-const changeStatusToCompleted = title => {
+const changeStatusToCompleted = (title, status) => {
     const savedTasks = localStorage.getItem('tasks');
     let tasks = [];
     if(savedTasks){
         tasks = JSON.parse(savedTasks);
         let myTasks = tasks.find(task => task.title === title)
         // console.log(userEmail, tasks, myTasks)
-        myTasks.status = 'completed';
+        myTasks.status = status;
         const remaining = tasks.filter(task => task.title !== title);
         tasks = [myTasks, ...remaining];
         localStorage.setItem('tasks', JSON.stringify(tasks));
@@ -93,6 +94,25 @@ const deleteTitle = title => {
     localStorage.setItem('tasks', JSON.stringify(remaining))
 }
 
+const filterTaskByStatus = (status) => {
+    const savedTasks = localStorage.getItem('tasks')
+    let specificTasks = []
+    if(savedTasks){
+        const tasks = JSON.parse(savedTasks);
+        specificTasks = tasks.filter(task => task.status === status)
+    }
+    return specificTasks;
+}
+const filterTaskByDate = (date) => {
+    const savedTasks = localStorage.getItem('tasks')
+    let specificTasks = []
+    if(savedTasks){
+        const tasks = JSON.parse(savedTasks);
+        specificTasks = tasks.filter(task => task.date === date)
+    }
+    return specificTasks;
+}
+
 export {
     createTask,
     getMyTasks,
@@ -100,5 +120,7 @@ export {
     getMyCreatedTasks,
     getOneTask,
     updateTask,
-    deleteTitle
+    deleteTitle,
+    filterTaskByStatus,
+    filterTaskByDate
 }

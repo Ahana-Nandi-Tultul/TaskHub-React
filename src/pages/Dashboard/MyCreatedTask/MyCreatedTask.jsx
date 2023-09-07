@@ -4,7 +4,6 @@ import { deleteTitle, getMyCreatedTasks, getOneTask, updateTask } from "../../..
 import moment from "moment";
 import { BiSolidCommentEdit } from "react-icons/bi";
 import UpdateModal from "./UpdateModal";
-import { useNavigate } from "react-router-dom";
 import toast from 'react-hot-toast';
 import Swal from "sweetalert2";
 
@@ -13,7 +12,6 @@ const MyCreatedTask = () => {
     const [myTasks, setMyTasks] = useState([]);
     const [isOpen, setIsOpen] = useState(false);
     const [oneTask, setOneTask] = useState({});
-    const navigate = useNavigate();
     useEffect(() => {
         const savedTasks = getMyCreatedTasks(user?.displayName)
         setMyTasks(savedTasks)
@@ -66,7 +64,7 @@ const MyCreatedTask = () => {
     }
     return (
         <div className="w-full">
-        <h2 className="text-3xl text-center my-5 font-semibold">My Tasks</h2>
+        <h2 className="text-3xl text-center my-5 font-semibold">My Created Tasks</h2>
         <div className="">
             <table className="table" style={{overflowX: 'scroll'}}>
                 {/* head */}
@@ -102,14 +100,11 @@ const MyCreatedTask = () => {
                         <td>{task.priority}</td>
                         <td>{moment(task.date).format("dddd, MMMM Do YYYY")}</td>
                         <td>{task.des.slice(0, 30)}</td>
-                        {
-                            task.status ? <td>Completed</td>:
-                            <td>In Progress</td>
-                        }
+                        <td className="uppercase">{task.status}</td>
                         <td>
                                 
                             <button onClick={() => handleUpdateTaskFatch(task.title)} 
-                            className="btn bg-green-700 text-white" disabled={ task.status ? true : false}>
+                            className="btn bg-green-700 text-white" disabled={ task.status == 'completed' ? true : false}>
                                 <BiSolidCommentEdit className="w-6 h-6"/></button>
                                 
                         </td>

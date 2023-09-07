@@ -3,11 +3,13 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import moment from "moment/moment";
 import { createTask } from "../../../utilities/manageTasks";
 import { getMyTeamsAsMembers, getTeamMembers } from "../../../utilities/manageTeam";
+import { useNavigate } from "react-router-dom";
 
 const CreateTask = () => {
     const priorityLevels = ['high', 'medium', 'low', 'critical', 'normal']
     const {user} = useContext(AuthContext);
     const myTeams = getMyTeamsAsMembers(user?.email);
+    const navigate = useNavigate();
     // console.log(myTeams);
     const [teamMembers, setTeamMembers] = useState([]);
     const handleTeamMembers = event => {
@@ -27,14 +29,16 @@ const CreateTask = () => {
         const team = form.chooseTeam.value;
         const assignTo = form.assignTo.value;
         const des = form.des.value;
+        const status = "pending";
 
         // console.log(title, createdBy, date, priority, assignTo, des);
         const task = {
-            title, createdBy, date, priority, team, assignTo, des
+            title, createdBy, date, priority, team, assignTo, des, status
         }
         // console.log(task)
         createTask(task);
-
+        form.reset();
+        navigate('/home/myCreatedTask');
     }
     return (
         <div className="w-full p-4">

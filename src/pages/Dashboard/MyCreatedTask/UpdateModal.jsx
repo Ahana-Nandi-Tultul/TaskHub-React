@@ -7,6 +7,11 @@ const UpdateModal = ({isOpen, setIsOpen, oneTask, handleUpdateTask}) => {
         <div className="fixed inset-0 flex justify-center items-center">
             <div className="bg-white p-6 rounded shadow-lg md:w-1/2 w-5/6">
                 <h2 className='text-lg text-center font-semibold'>Update {''}</h2>
+                <div className="flex justify-end">
+                    <button className="btn btn-square btn-outline" onClick={() => setIsOpen(!isOpen)}>
+                    <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                    </button>
+                </div>
             <form onSubmit={() => handleUpdateTask(event, oneTask.title)}>
             <div className="form-control">
                         <label className="label">
@@ -41,9 +46,7 @@ const UpdateModal = ({isOpen, setIsOpen, oneTask, handleUpdateTask}) => {
                     <input type='submit' className='btn bg-green-700 text-white' value="Update"/>
                 </div>
             </form>
-            <button className="btn btn-primary" onClick={() => setIsOpen(!isOpen)}>
-                    Close
-            </button>
+           
             </div>
         </div>
     </div>
