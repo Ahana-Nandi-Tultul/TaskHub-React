@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllTasks } from "../../../utilities/manageTasks";
 import { BiTime } from "react-icons/bi";
 import moment from "moment";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const DashBoard = () => {
     const [tasks, setTasks] = useState([])

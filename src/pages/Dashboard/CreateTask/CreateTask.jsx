@@ -4,7 +4,7 @@ import moment from "moment/moment";
 import { createTask } from "../../../utilities/manageTasks";
 import { getMyTeamsAsMembers, getTeamMembers } from "../../../utilities/manageTeam";
 import { useNavigate } from "react-router-dom";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const CreateTask = () => {
     const priorityLevels = ['high', 'medium', 'low', 'critical', 'normal']

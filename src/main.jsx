@@ -19,6 +19,7 @@ import CreateTask from './pages/Dashboard/CreateTask/CreateTask';
 import MyTasks from './pages/Dashboard/MyTasks/MyTasks';
 import MyCreatedTask from './pages/Dashboard/MyCreatedTask/MyCreatedTask';
 import PrivateRoutes from './routes/PrivateRoutes';
+import {  HelmetProvider } from 'react-helmet-async';
 
 
 const router = createBrowserRouter([
@@ -79,8 +80,10 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <AuthProvider>
-    <RouterProvider router={router}></RouterProvider>
-    </AuthProvider>
+    <HelmetProvider>
+      <AuthProvider>
+      <RouterProvider router={router}></RouterProvider>
+      </AuthProvider>
+    </HelmetProvider>
   </React.StrictMode>
 )

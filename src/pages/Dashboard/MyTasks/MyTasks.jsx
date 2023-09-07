@@ -3,7 +3,7 @@ import { changeStatusToCompleted, filterTaskByDate, filterTaskByStatus, getMyTas
 import { AuthContext } from "../../../providers/AuthProvider";
 import moment from "moment";
 import Swal from "sweetalert2";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const MyTasks = () => {
     const {user} = useContext(AuthContext)

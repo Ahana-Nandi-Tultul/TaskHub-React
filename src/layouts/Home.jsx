@@ -4,7 +4,9 @@ import { FaHome, FaTasks } from 'react-icons/fa';
 import { BiTask, BiGroup } from 'react-icons/bi';
 import {MdOutlineGroupAdd } from 'react-icons/md';
 import { Toaster } from 'react-hot-toast';
+
 const Home = () => {
+    
     return (
         <>
             <Navbar></Navbar>
@@ -28,9 +30,7 @@ const Home = () => {
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/myCreatedTask"><FaTasks/> My Created Task </NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/createTask"><BiTask/> Create A Task </NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/myTasks"><FaTasks/> My Task </NavLink>
-                    <NavLink className="flex items-center gap-4 text-lg" to="/home/dashboard"><FaHome/> Dashboard</NavLink>
                     </ul>
-                
                 </div>
             </div>
             <Toaster />

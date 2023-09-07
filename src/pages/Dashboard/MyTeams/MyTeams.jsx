@@ -4,7 +4,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { BiSolidCommentEdit } from 'react-icons/bi';
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const MyTeams = () => {
     const {user} = useContext(AuthContext);

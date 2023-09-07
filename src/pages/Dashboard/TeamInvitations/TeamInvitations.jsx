@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { myTeamsByInvitations, acceptTeam } from "../../../utilities/manageTeam";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const TeamInvitations = () => {
     const {user} = useContext(AuthContext);

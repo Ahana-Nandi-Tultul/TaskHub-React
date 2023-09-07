@@ -3,7 +3,7 @@ import { getUsers } from "../../../utilities/manageUsers";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { getOneTeam, updateTeam } from "../../../utilities/manageTeam";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const UpdateTeam = () => {
     const {user} = useContext(AuthContext);

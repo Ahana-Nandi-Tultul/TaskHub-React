@@ -5,7 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { setUsers } from '../../utilities/manageUsers';
-import { Helmet } from 'react-helmet';
+import { Helmet } from 'react-helmet-async';
 
 const Signup = () => {
     const {createUser, updateUserInfo} = useContext(AuthContext)

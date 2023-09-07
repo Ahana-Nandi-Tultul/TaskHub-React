@@ -6,7 +6,7 @@ import { BiSolidCommentEdit } from "react-icons/bi";
 import UpdateModal from "./UpdateModal";
 import toast from 'react-hot-toast';
 import Swal from "sweetalert2";
-import { Helmet } from "react-helmet";
+import { Helmet } from "react-helmet-async";
 
 const MyCreatedTask = () => {
     const {user} = useContext(AuthContext)
