@@ -4,6 +4,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { BiSolidCommentEdit } from 'react-icons/bi';
 import { useNavigate } from "react-router-dom";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyTeams = () => {
     const {user} = useContext(AuthContext);
@@ -38,7 +39,11 @@ const MyTeams = () => {
     }
 
     return (
-        <div className="w-full p-4">
+        <>
+            <Helmet>
+                <title>TaskHub || My Teams</title>
+            </Helmet>
+            <div className="w-full p-4">
             <h2 className="text-3xl text-center my-5 font-semibold">Teams Created by: {user?.displayName}</h2>
             <div className="overflow-x-auto">
                 <table className="table">
@@ -85,6 +90,8 @@ const MyTeams = () => {
                 </table>
             </div>
         </div>
+        </>
+        
     );
 };
 

@@ -4,6 +4,9 @@ import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { setUsers } from '../../utilities/manageUsers';
+import {Helmet} from "react-helmet";
+
+
 const Login = () => {
     const {login} = useContext(AuthContext)
     const navigate = useNavigate();
@@ -33,6 +36,9 @@ const Login = () => {
     }
     return (
         <>
+            <Helmet>
+                <title>TaskHub || Login</title>
+            </Helmet>
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="text-center lg:text-left md:w-1/2 w-full">

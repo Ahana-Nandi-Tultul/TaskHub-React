@@ -4,6 +4,7 @@ import moment from "moment/moment";
 import { createTask } from "../../../utilities/manageTasks";
 import { getMyTeamsAsMembers, getTeamMembers } from "../../../utilities/manageTeam";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const CreateTask = () => {
     const priorityLevels = ['high', 'medium', 'low', 'critical', 'normal']
@@ -41,7 +42,11 @@ const CreateTask = () => {
         navigate('/home/myCreatedTask');
     }
     return (
-        <div className="w-full p-4">
+        <>
+            <Helmet>
+                <title>TaskHub || Create A Task</title>
+            </Helmet>
+            <div className="w-full p-4">
         <h2 className="text-3xl text-center font-semibold my-4">Create A Task</h2>
         <form onSubmit={handleCreateTask}>
             <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4 mb-5">
@@ -145,7 +150,9 @@ const CreateTask = () => {
             <input type="submit" value="Create A Task" className="btn  btn-primary w-full"/>
             </div>
         </form>
-    </div>
+            </div>
+        </>
+        
     );
 };
 

@@ -3,6 +3,7 @@ import { AuthContext } from "../../../providers/AuthProvider";
 import { getUsers } from "../../../utilities/manageUsers";
 import { createTeam } from "../../../utilities/manageTeam";
 import { useNavigate } from "react-router-dom";
+import { Helmet } from "react-helmet";
 
 const CreateTeam = () => {
     const {user} = useContext(AuthContext);
@@ -41,7 +42,11 @@ const CreateTeam = () => {
         navigate('/home/myTeams')
     }
     return (
-        <div className="w-full p-4">
+        <>
+            <Helmet>
+                <title>TaskHub || Create Team</title>
+            </Helmet>
+            <div className="w-full p-4">
             <h2 className="text-3xl text-center font-semibold my-4">Create a Team and Send Invitation</h2>
             <form onSubmit={handleCreateTeam}>
                 <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4 mb-5">
@@ -93,6 +98,7 @@ const CreateTeam = () => {
                 </div>
             </form>
         </div>
+        </>
     );
 };
 

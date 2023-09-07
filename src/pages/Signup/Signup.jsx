@@ -5,6 +5,7 @@ import { useContext } from 'react';
 import { AuthContext } from '../../providers/AuthProvider';
 import Swal from 'sweetalert2';
 import { setUsers } from '../../utilities/manageUsers';
+import { Helmet } from 'react-helmet';
 
 const Signup = () => {
     const {createUser, updateUserInfo} = useContext(AuthContext)
@@ -33,10 +34,13 @@ const Signup = () => {
     };
     return (
         <>
+            <Helmet>
+                <title>TaskHub || Signup</title>
+            </Helmet>
             <div className="hero min-h-screen">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="text-center lg:text-left md:w-1/2 w-full">
-                        <img src={img} alt="" className='h-full' />
+                        <img src={img} alt="" className='h-full w-full' />
                     </div>
                     <div className="card flex-shrink-0 w-full max-w-sm shadow-2xl bg-base-100 md:w-1/2">
                     <form onSubmit={handleSubmit(onSubmit)} className="card-body w-full">
@@ -77,14 +81,12 @@ const Signup = () => {
                         pattern: /^(?=.*[A-Z])(?=.*[!@#$&*])(?=.*[0-9])(?=.*[a-z])/ })} />
                         {errors.password && <p className="text-red-700">Password field is required.Password must have
                         one Uppercase, one Special character, one Lowercase and Password should contain 6 characters</p>}
-                        <label className="label">
-                            <a href="#" className="label-text-alt link link-hover">Forgot password?</a>
-                        </label>
+                        
                         </div>
                         <div className="form-control mt-6">
                         <input type="submit" value="Sign Up" className="btn btn-primary"/>
                         </div>
-                        <p><small>Already Have an Account? Please <Link className='text-primary' to="/signup">Login</Link></small></p>
+                        <p><small>Already Have an Account? Please <Link className='text-primary' to="/">Login</Link></small></p>
                     </form>
                     </div>
                 </div>

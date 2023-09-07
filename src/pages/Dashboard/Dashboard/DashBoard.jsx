@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { getAllTasks } from "../../../utilities/manageTasks";
 import { BiTime } from "react-icons/bi";
 import moment from "moment";
+import { Helmet } from "react-helmet";
 
 const DashBoard = () => {
     const [tasks, setTasks] = useState([])
@@ -9,7 +10,11 @@ const DashBoard = () => {
         setTasks(getAllTasks())
     }, [])
     return (
-        <div className="px-4">
+        <>
+            <Helmet>
+                <title>TaskHub || Dashboard</title>
+            </Helmet>
+            <div className="px-4">
             <h2 className="text-center text-3xl font-semibold my-5">All Tasks : {tasks.length}</h2>
             <div className="grid gird-cols-1 md:grid-cols-2 gap-4">
                 {  tasks &&
@@ -29,6 +34,8 @@ const DashBoard = () => {
                 }
             </div>
         </div>
+        </>
+        
     );
 };
 

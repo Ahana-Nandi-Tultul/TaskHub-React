@@ -3,6 +3,7 @@ import { changeStatusToCompleted, filterTaskByDate, filterTaskByStatus, getMyTas
 import { AuthContext } from "../../../providers/AuthProvider";
 import moment from "moment";
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyTasks = () => {
     const {user} = useContext(AuthContext)
@@ -68,7 +69,11 @@ const MyTasks = () => {
     }
 
     return (
-        <div className="w-full px-4">
+        <>
+            <Helmet>
+                <title>TaskHub || My Created Tasks</title>
+            </Helmet>
+            <div className="w-full px-4">
             <h2 className="text-3xl text-center my-5 font-semibold">My Tasks</h2>
             <div className="md:flex justify-between my-10">
             <details className="dropdown mb-8">
@@ -140,6 +145,8 @@ const MyTasks = () => {
                 </table>
             </div>
         </div>
+        </>
+        
     );
 };
 

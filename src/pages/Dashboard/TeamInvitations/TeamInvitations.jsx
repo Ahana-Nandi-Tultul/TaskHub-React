@@ -1,6 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { myTeamsByInvitations, acceptTeam } from "../../../utilities/manageTeam";
+import { Helmet } from "react-helmet";
 
 const TeamInvitations = () => {
     const {user} = useContext(AuthContext);
@@ -19,7 +20,11 @@ const TeamInvitations = () => {
    }
     // console.log(myInvitedTeams)
     return (
-        <div className="w-full p-4">
+        <>
+            <Helmet>
+                <title>TaskHub || Teams & Invitations</title>
+            </Helmet>
+            <div className="w-full p-4">
             <h2 className="text-3xl text-center my-5 font-semibold">Teams & Invitations for: {user?.displayName}</h2>
             <div className="overflow-x-auto">
                 <table className="table">
@@ -79,6 +84,8 @@ const TeamInvitations = () => {
                 </table>
             </div>
         </div>
+        </>
+        
     );
 };
 

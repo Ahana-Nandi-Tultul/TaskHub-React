@@ -3,6 +3,7 @@ import { getUsers } from "../../../utilities/manageUsers";
 import { useNavigate, useParams } from "react-router-dom";
 import { AuthContext } from "../../../providers/AuthProvider";
 import { getOneTeam, updateTeam } from "../../../utilities/manageTeam";
+import { Helmet } from "react-helmet";
 
 const UpdateTeam = () => {
     const {user} = useContext(AuthContext);
@@ -46,7 +47,11 @@ const UpdateTeam = () => {
         navigate('/home/myTeams')
     }
     return (
-        <div className="w-full p-4">
+        <>
+            <Helmet>
+                <title>TaskHub || Update Teams</title>
+            </Helmet>
+            <div className="w-full p-4">
             <h2 className="text-3xl text-center font-semibold my-4">Update Team: {team.towner}</h2>
             <form onSubmit={handleUpdateTeam}>
                 <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4 mb-5">
@@ -96,6 +101,8 @@ const UpdateTeam = () => {
                 </div>
             </form>
         </div>
+        </>
+       
     );
 };
 

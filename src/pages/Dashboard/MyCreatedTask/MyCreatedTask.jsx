@@ -6,6 +6,7 @@ import { BiSolidCommentEdit } from "react-icons/bi";
 import UpdateModal from "./UpdateModal";
 import toast from 'react-hot-toast';
 import Swal from "sweetalert2";
+import { Helmet } from "react-helmet";
 
 const MyCreatedTask = () => {
     const {user} = useContext(AuthContext)
@@ -63,66 +64,72 @@ const MyCreatedTask = () => {
         setOneTask(task);
     }
     return (
-        <div className="w-full">
-        <h2 className="text-3xl text-center my-5 font-semibold">My Created Tasks</h2>
-        <div className="">
-            <table className="table" style={{overflowX: 'scroll'}}>
-                {/* head */}
-                <thead>
-                <tr>
-                    <th></th>
-                    <th></th>
-                    <th>Task Titile</th>
-                    <th>Create By</th>
-                    <th>Assign To</th>
-                    <th>Team Name</th>
-                    <th>Priority Level</th>
-                    <th>Due Date</th>
-                    <th>Description</th>
-                    <th>Status</th>
-                </tr>
-                </thead>
-                <tbody>
-                {
-                    myTasks.map((task, index) => <tr
-                    key={index}
-                    >
-                        <td>
-                            <button className="btn btn-circle btn-outline" onClick={() => handleDeleteTask(task.title)}>
-                                <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
-                            </button>
-                        </td>
-                        <td>{index+1}</td>
-                        <td>{task.title}</td>
-                        <td>{task.createdBy}</td>
-                        <td>{task.assignTo}</td>
-                        <td className="uppercase">{task.team}</td>
-                        <td>{task.priority}</td>
-                        <td>{moment(task.date).format("dddd, MMMM Do YYYY")}</td>
-                        <td>{task.des.slice(0, 30)}</td>
-                        <td className="uppercase">{task.status}</td>
-                        <td>
+        <>
+            <Helmet>
+                <title>TaskHub || My Created Tasks</title>
+            </Helmet>
+            <div className="w-full">
+                <h2 className="text-3xl text-center my-5 font-semibold">My Created Tasks</h2>
+                <div className="">
+                    <table className="table" style={{overflowX: 'scroll'}}>
+                        {/* head */}
+                        <thead>
+                        <tr>
+                            <th></th>
+                            <th></th>
+                            <th>Task Titile</th>
+                            <th>Create By</th>
+                            <th>Assign To</th>
+                            <th>Team Name</th>
+                            <th>Priority Level</th>
+                            <th>Due Date</th>
+                            <th>Description</th>
+                            <th>Status</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {
+                            myTasks.map((task, index) => <tr
+                            key={index}
+                            >
+                                <td>
+                                    <button className="btn btn-circle btn-outline" onClick={() => handleDeleteTask(task.title)}>
+                                        <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M6 18L18 6M6 6l12 12" /></svg>
+                                    </button>
+                                </td>
+                                <td>{index+1}</td>
+                                <td>{task.title}</td>
+                                <td>{task.createdBy}</td>
+                                <td>{task.assignTo}</td>
+                                <td className="uppercase">{task.team}</td>
+                                <td>{task.priority}</td>
+                                <td>{moment(task.date).format("dddd, MMMM Do YYYY")}</td>
+                                <td>{task.des.slice(0, 30)}</td>
+                                <td className="uppercase">{task.status}</td>
+                                <td>
+                                        
+                                    <button onClick={() => handleUpdateTaskFatch(task.title)} 
+                                    className="btn bg-green-700 text-white" disabled={ task.status == 'completed' ? true : false}>
+                                        <BiSolidCommentEdit className="w-6 h-6"/></button>
+                                        
+                                </td>
                                 
-                            <button onClick={() => handleUpdateTaskFatch(task.title)} 
-                            className="btn bg-green-700 text-white" disabled={ task.status == 'completed' ? true : false}>
-                                <BiSolidCommentEdit className="w-6 h-6"/></button>
-                                
-                        </td>
+                            </tr>)
+                        }
                         
-                    </tr>)
-                }
-                
-                
-                </tbody>
-            </table>
-            <UpdateModal
-            isOpen={isOpen}
-            setIsOpen={setIsOpen}
-            handleUpdateTask = {handleUpdateTask}
-            oneTask = {oneTask}
-            ></UpdateModal>
-        </div>
-    </div>
+                        
+                        </tbody>
+                    </table>
+                    <UpdateModal
+                    isOpen={isOpen}
+                    setIsOpen={setIsOpen}
+                    handleUpdateTask = {handleUpdateTask}
+                    oneTask = {oneTask}
+                    ></UpdateModal>
+                </div>
+            </div>
+        </>
+       
     );
 };
 
