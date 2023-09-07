@@ -3,7 +3,7 @@ const createTask = (task) => {
     let allTasks = []
     if(savedTasks){
         allTasks = JSON.parse(savedTasks);
-        allTasks = [...allTasks, task];
+        allTasks = [task, ...allTasks];
     }
     else{
         allTasks.push(task);
@@ -130,6 +130,15 @@ const sortTasksByDate = (sortType) => {
     return sorted;
 }
 
+const getAllTasks = () => {
+    const savedTasks = localStorage.getItem('tasks')
+    let tasks = []
+    if(savedTasks){
+         tasks = JSON.parse(savedTasks);
+    }
+    return tasks
+}
+
 export {
     createTask,
     getMyTasks,
@@ -140,5 +149,6 @@ export {
     deleteTitle,
     filterTaskByStatus,
     filterTaskByDate,
-    sortTasksByDate
+    sortTasksByDate,
+    getAllTasks
 }

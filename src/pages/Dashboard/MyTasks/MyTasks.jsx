@@ -70,7 +70,7 @@ const MyTasks = () => {
     return (
         <div className="w-full px-4">
             <h2 className="text-3xl text-center my-5 font-semibold">My Tasks</h2>
-            <div className="md:flex justify-between">
+            <div className="md:flex justify-between my-10">
             <details className="dropdown mb-8">
               <summary className="m-1 btn">Filter By Status</summary>
               <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
@@ -87,7 +87,7 @@ const MyTasks = () => {
               </ul>
             </details>
 
-            <form onSubmit={handleFilterByDate}>
+            <form onSubmit={handleFilterByDate} className="mb-8">
                 <div className="input-group">
                     <input type="date" name="date" placeholder="Date" className="input input-bordered" />
                     <input className="btn" type="submit" value="Go" />
