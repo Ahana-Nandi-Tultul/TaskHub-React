@@ -18,6 +18,7 @@ import TeamInvitations from './pages/Dashboard/TeamInvitations/TeamInvitations';
 import CreateTask from './pages/Dashboard/CreateTask/CreateTask';
 import MyTasks from './pages/Dashboard/MyTasks/MyTasks';
 import MyCreatedTask from './pages/Dashboard/MyCreatedTask/MyCreatedTask';
+import PrivateRoutes from './routes/PrivateRoutes';
 
 
 const router = createBrowserRouter([
@@ -37,7 +38,7 @@ const router = createBrowserRouter([
   },
   {
     path: 'home',
-    element: <Home></Home>,
+    element: <PrivateRoutes> <Home></Home></PrivateRoutes>,
     children: [
       {
         path: 'dashboard',
