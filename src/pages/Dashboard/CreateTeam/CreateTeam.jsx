@@ -66,7 +66,7 @@ const CreateTeam = () => {
                         </label>
                         <label className="input-group">
                             <span>TOwner</span>
-                            <input type="text" defaultValue={user?.displayName} name="towner" className="input input-bordered w-full"  required/>
+                            <input type="text" defaultValue={user?.displayName} name="towner" className="input input-bordered w-full" disabled  required/>
                         </label>
                     </div>
                 </div>

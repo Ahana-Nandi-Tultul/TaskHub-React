@@ -30,7 +30,7 @@ You can not create task without being a team Member or create a team by own. If 
 7. User can mark task as 'pending', 'in-progress' and 'completed'
 
 
-# Packages, I have used:
+## Packages, I have used:
 1. Firebase - for authentication
 2. react-router-dom
 3. aos - for animation

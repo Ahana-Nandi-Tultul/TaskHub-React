@@ -23,6 +23,7 @@ import Signup from './pages/Signup/Signup';
 import Aos from 'aos';
 import 'aos/dist/aos.css';
 import DashBoard from './pages/Dashboard/Dashboard/Dashboard';
+import ErrorPage from './pages/Shared/Error/ErrorPage';
 
 
 Aos.init({
@@ -34,6 +35,7 @@ const router = createBrowserRouter([
   {
     path: '/',
     element: <Main></Main>,
+    errorElement: <ErrorPage></ErrorPage>,
     children: [
       {
         path: '/',
@@ -92,10 +94,12 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
+    <div className='bg-white'>
     <HelmetProvider>
       <AuthProvider>
       <RouterProvider router={router}></RouterProvider>
       </AuthProvider>
     </HelmetProvider>
+    </div>
   </React.StrictMode>
 )

@@ -7,7 +7,7 @@ import { Helmet } from "react-helmet-async";
 const DashBoard = () => {
     const [tasks, setTasks] = useState([])
     const [currentPage, setCurrentPage] = useState(0);
-    const tasksPerPage = 3;
+    const tasksPerPage = 4;
     useEffect(() => {
         setTasks(getAllTasks())
     }, [])

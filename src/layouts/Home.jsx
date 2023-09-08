@@ -19,7 +19,7 @@ const Home = () => {
             <Navbar></Navbar>
             <div className="drawer lg:drawer-open">
                 <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-                <div className="drawer-content flex flex-col items-center justify-center">
+                <div className="drawer-content w-full overflow-auto flex flex-col items-center justify-center">
                     <Outlet></Outlet>
                     {/* <label htmlFor="my-drawer-2" className="btn btn-primary drawer-button lg:hidden">Open drawer</label> */}
                 
@@ -35,8 +35,8 @@ const Home = () => {
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/myTeams"><BiGroup/> My Teams</NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/teamInvitations"><BiGroup/> Teams & Invitations</NavLink>
                     <div className="divider"></div>
-                    <NavLink className="flex items-center gap-4 text-lg" to="/home/myCreatedTask"><FaTasks/> My Created Task </NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/createTask"><BiTask/> Create A Task </NavLink>
+                    <NavLink className="flex items-center gap-4 text-lg" to="/home/myCreatedTask"><FaTasks/> My Created Task </NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/myTasks"><FaTasks/> My Task </NavLink>
                     {
                         

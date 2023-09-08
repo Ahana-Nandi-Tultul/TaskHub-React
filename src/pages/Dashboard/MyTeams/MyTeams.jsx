@@ -46,7 +46,7 @@ const MyTeams = () => {
             <div className="w-full p-4" data-aos="fade-down">
             <h2 className="text-3xl text-center my-5 font-semibold">Teams Created by: {user?.displayName}</h2>
             <div className="divider"></div>
-            <div className="overflow-x-auto">
+            <div className="overflow-auto w-full">
                 <table className="table">
                     {/* head */}
                     <thead>
@@ -58,7 +58,7 @@ const MyTeams = () => {
                         <th>Actions</th>
                     </tr>
                     </thead>
-                    <tbody>
+                    <tbody className="overflow-x-auto">
                     {
                         myTeams.map((team, index) => 
                         <tr key={index}>
@@ -68,7 +68,7 @@ const MyTeams = () => {
                             </button>
                             </td>
                             <td>{index + 1}</td>
-                            <td>{team.tname}</td>
+                            <td className="uppercase">{team.tname}</td>
                             <td>
                                 <ul>
                                 {
