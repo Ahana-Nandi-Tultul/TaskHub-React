@@ -1,9 +1,9 @@
-### TaskHub 
+# TaskHub 
 
 This is a web based application. Here user can manage their work in a team environment. This application
 use localStorage of browser for storing all of its data.
 
-## Live Site: https://taskhub-3b476.web.app/
+# Live Site: https://taskhub-3b476.web.app/
 
 ## How to use:
 * First user need to sign and login for using this application.
@@ -17,9 +17,10 @@ will go to the team-members.
 * The member who created the task can update or delete the task.
 * Team member can filter and sort task which are assigned to them beased on 'status', 'due date' as ascending or descending order.
 
-# Note: You can not create task without being a team Member or create a team by own. If team info is updated then again all the members will get the 'Team Invitation' and have to accept that invitation. If one team member doesnot accept the team invitation, others cannot assign task to him / her. One can only assign task to the members of that team, where he / she is a member also or he or she created that team. By default, team owner is a 
+# Note: 
+You can not create task without being a team Member or create a team by own. If team info is updated then again all the members will get the 'Team Invitation' and have to accept that invitation. If one team member doesnot accept the team invitation, others cannot assign task to him / her. One can only assign task to the members of that team, where he / she is a member also or he or she created that team. By default, team owner is a 
 
-# Features
+## Features
 1. User can login, signup and logout.
 2. User can created team, update team and delete team.
 3. User can created task and asign task to others team members.
