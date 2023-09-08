@@ -9,10 +9,12 @@ import { Helmet } from "react-helmet-async";
 const CreateTask = () => {
     const priorityLevels = ['high', 'medium', 'low', 'critical', 'normal']
     const {user} = useContext(AuthContext);
-    const myTeams = getMyTeamsAsMembers(user?.email);
-    const navigate = useNavigate();
+    const myTeams = getMyTeamsAsMembers(user?.email, user?.displayName);
     // console.log(myTeams);
-    const [teamMembers, setTeamMembers] = useState([]);
+    const navigate = useNavigate();
+    // console.log(getTeamMembers(myTeams[0]?.tname), myTeams[0]?.tname);
+    const [teamMembers, setTeamMembers] = useState(myTeams[0]?.tname && getTeamMembers(myTeams[0]?.tname) || []);
+   
     const handleTeamMembers = event => {
 
         event.preventDefault()
@@ -105,12 +107,14 @@ const CreateTask = () => {
                 <div className="form-control w-full">
                     <label className="label">
                         <span className="label-text">Choose Team</span>
+                        { myTeams.length}
                     </label>
                     <label className="input-group">
                         <select className="select select-bordered w-full" name="chooseTeam"
                            onChange={handleTeamMembers}
                           required>
                                 {
+                                   
                                     myTeams.map((team, index) =>
                                         <option
                                         key={index} value={team.tname}

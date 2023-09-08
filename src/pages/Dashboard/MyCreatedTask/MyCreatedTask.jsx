@@ -60,7 +60,7 @@ const MyCreatedTask = () => {
         event.preventDefault();
         setIsOpen(!isOpen);
         const task = getOneTask(title)
-        // console.log(task);
+        console.log(task);
         setOneTask(task);
     }
     return (
@@ -68,7 +68,7 @@ const MyCreatedTask = () => {
             <Helmet>
                 <title>TaskHub || My Created Tasks</title>
             </Helmet>
-            <div className="w-full" data-aos="fade-down">
+            <div className="w-full">
                 <h2 className="text-3xl text-center my-5 font-semibold">My Created Tasks</h2>
                 <div className="divider"></div>
                 <div className="">

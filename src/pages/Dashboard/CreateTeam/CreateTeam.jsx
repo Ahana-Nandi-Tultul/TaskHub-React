@@ -13,7 +13,7 @@ const CreateTeam = () => {
          savedUsers = allSavedUsers.filter(savedUser => savedUser !== user?.email);
 
     }
-    const [selectedUsers, setSelectedUsers] = useState([]);
+    const [selectedUsers, setSelectedUsers] = useState([user?.email]||[]);
     const navigate = useNavigate()
     const handleCheckboxChange = (event) => {
         const userValue = event.target.value;
@@ -31,12 +31,12 @@ const CreateTeam = () => {
         const form = event.target;
         const tname =  form.tname.value.toLowerCase();
         const towner  = form.towner.value;
-        console.log(towner);
-        const teamMembers = selectedUsers.map((user) => ({
+        const townerEmail = user?.email;
+        let teamMembers = selectedUsers.map((user) => ({
             accepted: 0,
             user: user,
           }))
-        const team = {tname, towner, teamMembers};
+        const team = {tname, towner, townerEmail, teamMembers};
         createTeam(team);
         form.reset();
         navigate('/home/myTeams')

@@ -8,7 +8,7 @@ const Profile = () => {
     useEffect(() => {
         setProfile(getProfile(user?.email))
     }, [user?.email])
-    console.log(profile)
+    // console.log(profile)
      return (
         <div className="p-4" data-aos="fade-down">
             <div className="card lg:card-side bg-base-100 shadow-xl h-full md:h-96 p-4 w-full">

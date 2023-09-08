@@ -94,14 +94,16 @@ const acceptTeam = (tname, email) => {
 
 }
 
-const getMyTeamsAsMembers = (username) => {
+const getMyTeamsAsMembers = (email) => {
     const savedTeams = localStorage.getItem('teams');
     const teams = JSON.parse(savedTeams);
     let mySavedTeams = []
     if(teams){     
     mySavedTeams = teams.filter((item) =>
-    item.teamMembers.some((member) => member.user === username)
+    item.teamMembers.some((member) => member.user === email)
     )
+    // const ifTOwner = teams.filter(team => team.towner === username) 
+    // mySavedTeams.push(...ifTOwner)
 
     }
     return mySavedTeams
@@ -114,8 +116,9 @@ const getTeamMembers = teamName => {
     let acceptedTeamReq;
     if(teams){
         thatTeam = teams.find(team => team.tname === teamName);
-        acceptedTeamReq = thatTeam.teamMembers.filter(member => member.accepted === 1)
-        // console.log(acceptedTeamReq)
+        acceptedTeamReq = thatTeam.teamMembers.filter(member => member.accepted === 1 )
+        // acceptedTeamReq.push({user: thatTeam.townerEmail})
+        console.log(acceptedTeamReq)
     }
 
     return acceptedTeamReq;

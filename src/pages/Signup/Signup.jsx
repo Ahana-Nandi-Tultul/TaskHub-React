@@ -76,7 +76,7 @@ const Signup = () => {
                         </label>
                         <input type="text" placeholder="bio" className="input input-bordered" 
                         {...register("bio", { required: true })} />
-                        {errors.photoURL && <p className="text-red-700">Bio field is required</p>}
+                        {errors.bio && <p className="text-red-700">Bio field is required</p>}
                         </div>
                         <div className="form-control">
                         <label className="label">
