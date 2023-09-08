@@ -46,7 +46,7 @@ const Signup = () => {
             <Helmet>
                 <title>TaskHub || Signup</title>
             </Helmet>
-            <div className="hero min-h-screen">
+            <div className="hero min-h-screen" data-aos="fade-down">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="text-center lg:text-left md:w-1/2 w-full">
                         <img src={img} alt="" className='h-full w-full' />

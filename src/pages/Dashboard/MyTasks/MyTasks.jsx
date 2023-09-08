@@ -45,8 +45,8 @@ const MyTasks = () => {
         
     }
 
-    const handleFilter = status => {
-        setMyTasks(filterTaskByStatus(status))
+    const handleFilter = (status, email) => {
+        setMyTasks(filterTaskByStatus(status, email))
     }
     const handleFilterByDate = event => {
         event.preventDefault();
@@ -55,7 +55,7 @@ const MyTasks = () => {
         // console.log(date)
         if(date){
 
-            setMyTasks(filterTaskByDate(date))
+            setMyTasks(filterTaskByDate(date, user?.email))
         }
         else{
             const savedTasks = getMyTasks(user?.email)
@@ -65,7 +65,7 @@ const MyTasks = () => {
     }
 
     const handleSortByDate = (sortType) => {
-        setMyTasks(sortTasksByDate(sortType));
+        setMyTasks(sortTasksByDate(sortType, user?.email));
     }
 
     return (
@@ -73,15 +73,16 @@ const MyTasks = () => {
             <Helmet>
                 <title>TaskHub || My Created Tasks</title>
             </Helmet>
-            <div className="w-full px-4">
+            <div className="w-full px-4" data-aos="fade-down">
             <h2 className="text-3xl text-center my-5 font-semibold">My Tasks</h2>
+            <div className="divider"></div>
             <div className="md:flex justify-between my-10">
             <details className="dropdown mb-8">
               <summary className="m-1 btn">Filter By Status</summary>
               <ul className="p-2 shadow menu dropdown-content z-[1] bg-base-100 rounded-box w-52">
-                <li><button onClick={() => handleFilter('pending')}>Pending</button></li>
-                <li><button onClick={() => handleFilter('inprogress')}>In Progress</button></li>
-                <li><button onClick={() => handleFilter('completed')}>Completed</button></li>
+                <li><button onClick={() => handleFilter('pending', user?.email)}>Pending</button></li>
+                <li><button onClick={() => handleFilter('inprogress', user?.email)}>In Progress</button></li>
+                <li><button onClick={() => handleFilter('completed', user?.email)}>Completed</button></li>
               </ul>
             </details>
             <details className="dropdown mb-8">

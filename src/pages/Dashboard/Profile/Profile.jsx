@@ -10,7 +10,7 @@ const Profile = () => {
     }, [user?.email])
     console.log(profile)
      return (
-        <div className="p-4">
+        <div className="p-4" data-aos="fade-down">
             <div className="card lg:card-side bg-base-100 shadow-xl h-full md:h-96 p-4 w-full">
                 <figure><img src={user?.photoURL} alt="Album" className="h-full w-full"/></figure>
                 <div className="card-body">

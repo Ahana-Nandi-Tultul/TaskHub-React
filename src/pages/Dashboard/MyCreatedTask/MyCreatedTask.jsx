@@ -1,6 +1,6 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../../providers/AuthProvider";
-import { deleteTitle, getMyCreatedTasks, getOneTask, updateTask } from "../../../utilities/manageTasks";
+import { deleteTask, getMyCreatedTasks, getOneTask, updateTask } from "../../../utilities/manageTasks";
 import moment from "moment";
 import { BiSolidCommentEdit } from "react-icons/bi";
 import UpdateModal from "./UpdateModal";
@@ -44,7 +44,7 @@ const MyCreatedTask = () => {
             confirmButtonText: 'Yes, delete it!'
           }).then((result) => {
             if (result.isConfirmed) {
-                deleteTitle(title)
+                deleteTask(title)
                 const savedTasks = getMyCreatedTasks(user?.displayName)
                 setMyTasks(savedTasks)
               Swal.fire(
@@ -68,8 +68,9 @@ const MyCreatedTask = () => {
             <Helmet>
                 <title>TaskHub || My Created Tasks</title>
             </Helmet>
-            <div className="w-full">
+            <div className="w-full" data-aos="fade-down">
                 <h2 className="text-3xl text-center my-5 font-semibold">My Created Tasks</h2>
+                <div className="divider"></div>
                 <div className="">
                     <table className="table" style={{overflowX: 'scroll'}}>
                         {/* head */}

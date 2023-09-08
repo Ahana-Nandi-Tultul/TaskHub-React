@@ -26,7 +26,7 @@ const Home = () => {
                 </div> 
                 <div className="drawer-side">
                     <label htmlFor="my-drawer-2" className="drawer-overlay"></label> 
-                    <ul className="menu p-4 w-50 md:w-80 min-h-full bg-base-200 text-base-content space-y-4">
+                    <ul className="menu p-4 w-50 md:w-70 min-h-full bg-base-200 text-base-content space-y-4">
                     {/* Sidebar content here */}
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/dashboard"><FaHome/> Dashboard</NavLink>
                     <NavLink className="flex items-center gap-4 text-lg" to="/home/profile"><FaUserCircle/> Profile</NavLink>

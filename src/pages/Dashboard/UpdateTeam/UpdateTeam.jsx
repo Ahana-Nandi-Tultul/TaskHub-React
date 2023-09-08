@@ -51,8 +51,9 @@ const UpdateTeam = () => {
             <Helmet>
                 <title>TaskHub || Update Teams</title>
             </Helmet>
-            <div className="w-full p-4">
+            <div className="w-full p-4" data-aos="fade-down">
             <h2 className="text-3xl text-center font-semibold my-4">Update Team: {team.towner}</h2>
+            <div className="divider"></div>
             <form onSubmit={handleUpdateTeam}>
                 <div className="grid grid-cols-1 md:grid-cols-2 w-full gap-4 mb-5">
                     <div className="form-control w-full">

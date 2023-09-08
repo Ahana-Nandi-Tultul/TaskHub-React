@@ -2,7 +2,7 @@ import moment from "moment";
 
 const UpdateModal = ({isOpen, setIsOpen, oneTask, handleUpdateTask}) => {
     return (
-        <div className={`fixed inset-0 z-50 ${isOpen ? 'block' : 'hidden'} `}>
+        <div className={`fixed inset-0 z-50 ${isOpen ? 'block' : 'hidden'} `} data-aos="fade-down">
         <div className="fixed inset-0 bg-black opacity-50"></div>
         <div className="fixed inset-0 flex justify-center items-center">
             <div className="bg-white p-6 rounded shadow-lg md:w-1/2 w-5/6">

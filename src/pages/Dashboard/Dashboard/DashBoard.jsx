@@ -29,8 +29,9 @@ const DashBoard = () => {
             <Helmet>
                 <title>TaskHub || Dashboard</title>
             </Helmet>
-            <div className="px-4">
+            <div className="px-4" data-aos="fade-down">
             <h2 className="text-center text-3xl font-semibold my-5">All Tasks : {tasks.length}</h2>
+            <div className="divider"></div>
             <div className="grid gird-cols-1 md:grid-cols-2 gap-4">
                 {  tasks &&
                     currentTasks.map((task, index) => <div className="card w-full bg-base-100 shadow-xl" key={index}>

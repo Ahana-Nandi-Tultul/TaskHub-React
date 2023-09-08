@@ -24,8 +24,9 @@ const TeamInvitations = () => {
             <Helmet>
                 <title>TaskHub || Teams & Invitations</title>
             </Helmet>
-            <div className="w-full p-4">
+            <div className="w-full p-4" data-aos="fade-down">
             <h2 className="text-3xl text-center my-5 font-semibold">Teams & Invitations for: {user?.displayName}</h2>
+            <div className="divider"></div>
             <div className="overflow-x-auto">
                 <table className="table">
                     {/* head */}

@@ -86,7 +86,7 @@ const updateTask = (title, updatedTask) =>{
     return ;
 }
 
-const deleteTitle = title => {
+const deleteTask = title => {
     const savedTeams = localStorage.getItem('tasks');
     const teams = JSON.parse(savedTeams);
     
@@ -94,37 +94,42 @@ const deleteTitle = title => {
     localStorage.setItem('tasks', JSON.stringify(remaining))
 }
 
-const filterTaskByStatus = (status) => {
+const filterTaskByStatus = (status, email) => {
     const savedTasks = localStorage.getItem('tasks')
     let specificTasks = []
     if(savedTasks){
         const tasks = JSON.parse(savedTasks);
-        specificTasks = tasks.filter(task => task.status === status)
+        const tasksOfUser = tasks.filter(task => task.assignTo === email)
+        specificTasks = tasksOfUser.filter(task => task.status === status)
     }
     return specificTasks;
 }
-const filterTaskByDate = (date) => {
+const filterTaskByDate = (date, email) => {
     const savedTasks = localStorage.getItem('tasks')
     let specificTasks = []
     if(savedTasks){
         const tasks = JSON.parse(savedTasks);
-        specificTasks = tasks.filter(task => task.date === date)
+        const tasksOfUser = tasks.filter(task => task.assignTo === email)
+        specificTasks = tasksOfUser.filter(task => task.date === date)
     }
     return specificTasks;
 }
 
-const sortTasksByDate = (sortType) => {
+const sortTasksByDate = (sortType, email) => {
     const savedTasks = localStorage.getItem('tasks')
     let sorted = []
     if(savedTasks){
         const tasks = JSON.parse(savedTasks);
-        sorted = tasks.sort((a, b) => {
-            if (sortType === 'asc') {
-              return a.date.localeCompare(b.date);
-            } else {
-              return b.date.localeCompare(a.date);
-            }
-    })
+        const tasksOfUser = tasks.filter(task => task.assignTo === email)
+        if(tasksOfUser){
+            sorted = tasksOfUser.sort((a, b) => {
+                if (sortType === 'asc') {
+                  return a.date.localeCompare(b.date);
+                } else {
+                  return b.date.localeCompare(a.date);
+                }
+            })
+        }
 }
     console.log(sorted);
     return sorted;
@@ -146,7 +151,7 @@ export {
     getMyCreatedTasks,
     getOneTask,
     updateTask,
-    deleteTitle,
+    deleteTask,
     filterTaskByStatus,
     filterTaskByDate,
     sortTasksByDate,

@@ -47,7 +47,7 @@ const Login = () => {
             <Helmet>
                 <title>TaskHub || Login</title>
             </Helmet>
-            <div className="hero min-h-screen">
+            <div className="hero min-h-screen" data-aos="fade-down">
                 <div className="hero-content flex-col lg:flex-row">
                     <div className="text-center lg:text-left md:w-1/2 w-full">
                         <img src={img} alt="" className='h-full' />

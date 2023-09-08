@@ -14,7 +14,7 @@ const Navbar = () => {
    
     return (
         <>
-           <div className="navbar bg-base-200 md:px-20 py-4 flex items-center justify-between">
+           <div className="navbar bg-base-200 md:px-20 py-4 flex items-center justify-between" data-aos="fade-up">
                 <div className="navbar-start items-center flex">
                     <div className="dropdown">
                     <label tabIndex={0} htmlFor="my-drawer-2" className="btn btn-ghost lg:hidden drawer-button">
