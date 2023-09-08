@@ -37,7 +37,7 @@ const Navbar = () => {
                     {
                          user ? <>
                          <div className="avatar mr-4">
-                             <div className="w-10 h-10 rounded-full ring ring-[#f5b48e] ring-offset-2">
+                             <div className="w-10 h-10 rounded-full ring ring-black ring-offset-2">
                                  {
                                      user?.photoURL ? 
                                      <img src={user?.photoURL} 
@@ -48,7 +48,7 @@ const Navbar = () => {
                                 <Tooltip id="my-tooltip" className='bg-black text-white z-20' />
                              </div>
                          </div>
-                         <button className='btn' onClick={handleLogout}>Logout</button>         
+                         <button className='btn bg-white' onClick={handleLogout}>Logout</button>         
                          </> 
                           : 
                         <>

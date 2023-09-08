@@ -6,9 +6,24 @@ import { Helmet } from "react-helmet-async";
 
 const DashBoard = () => {
     const [tasks, setTasks] = useState([])
+    const [currentPage, setCurrentPage] = useState(0);
+    const tasksPerPage = 3;
     useEffect(() => {
         setTasks(getAllTasks())
     }, [])
+
+    const totalTasks = tasks.length;
+    const totalPages = Math.ceil(totalTasks / tasksPerPage);
+    const indexOfLastTask = (currentPage + 1) * tasksPerPage;
+    const indexOfFirstTask = indexOfLastTask - tasksPerPage;
+    const currentTasks = tasks.slice(indexOfFirstTask, indexOfLastTask);
+
+    const pagesNumbers = [...Array(totalPages).keys()];
+
+    const handlePageClick = (pageNumber) => {
+        setCurrentPage(pageNumber);
+    };
+
     return (
         <>
             <Helmet>
@@ -18,7 +33,7 @@ const DashBoard = () => {
             <h2 className="text-center text-3xl font-semibold my-5">All Tasks : {tasks.length}</h2>
             <div className="grid gird-cols-1 md:grid-cols-2 gap-4">
                 {  tasks &&
-                    tasks.map((task, index) => <div className="card w-full bg-base-100 shadow-xl" key={index}>
+                    currentTasks.map((task, index) => <div className="card w-full bg-base-100 shadow-xl" key={index}>
                     <div className="card-body">
                       <h2 className="card-title">{task.title}</h2>
                       <p>{task.des}</p>
@@ -33,6 +48,19 @@ const DashBoard = () => {
                   </div>)
                 }
             </div>
+           <div className="my-10 flex justify-center"> 
+                <div>
+                    {pagesNumbers.map((number) => (
+                    <button
+                        key={number}
+                        onClick={() => handlePageClick(number)}
+                        className={`btn ${currentPage === number ? 'active' : ''}`}
+                    >
+                        {number+1}
+                    </button>
+                    ))}
+                </div>
+           </div>
         </div>
         </>
         
